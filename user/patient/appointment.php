@@ -63,10 +63,40 @@
                                                             '<td>'.$data['is_emergency'].'</td>'.
                                                             '<td>'.'<button class="button is-success is-small">Approved</button>'.'</td>'.
                                                             '<td>
+                                                            <div class="level-right">
+                                                                <button class="button is-success is-small is-danger" onclick='."'".'document.getElementById("nurse_modal").setAttribute("class","modal is-active")'."'".'>Delete</button>
+                                                                <div class="modal" id="nurse_modal">
+                                                                    <div class="modal-background">
+                                                                        <div class="columns">
+                                                                            <div class="column"></div>
+                                                                            <div class="column is-6 is-vcentered ">
+                                                                                <div class="column">
+                                                                                    <br><br>
+                                                                                </div>
+                                                                                <div class="hero is-white">
+                                                                                    <div class="column" style="padding:5%;">
+                                                                                        <div class="container has-text-centered content">
+                                                                                            <div class="title">delete</div>
+
+                                                                                            <div class="title has-text-weight-bold">
+                                                                                                Are you sure you want to Delete?
+                                                                                            </div>
+                                                                                            <form action="back/appointment_delete.php" method="POST">
+                                                                                                <button type="submit" name="submit" class="button is-success is-large" onclick='."'".'document.getElementById("nurse_modal").setAttribute("class","modal")'."'".'>Yes</button>
+                                                                                            </form>
+                                                                                            <br>
+                                                                                            <button class="button is-danger has-text-weight-bold" onclick='."'".'document.getElementById("nurse_modal").setAttribute("class","modal")'."'".'>No</button>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="column"><br><br></div>
+                                                                            </div>
+                                                                            <div class="column"></div>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
                                                                 
-                                                                <form action="back/appointment_delete.php" method="POST">
-                                                                    <button type="submit" name="submit" class="button is-danger is-small">delete</button>
-                                                                </form>
                                                             </td>'.
 
                                                     '</tr>';

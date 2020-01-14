@@ -19,7 +19,7 @@ else{
                     '<td>'.$row['doctor_id'].'</td>'.
                     '<td>'.$row['room_no'].'</td>'.
                     '<td>      
-                        <button class="button is-success is-small">open</button>
+                        <a href="open.php"><button class="button is-success is-small">open</button></a>
                     </td>'.
                     
                 '</tr>';

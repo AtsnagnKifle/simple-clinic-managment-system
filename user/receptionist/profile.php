@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -32,18 +35,12 @@
                                                 <div class="columns">
                                                     <div class="column">
                                                         <div class="content has-text-left" style="padding-left: 30%;">
-                                                            <h6>Name: </h6>
-                                                            <h6>ID: </h6>
-                                                            <h6>Age: </h6>
-                                                            <h6>Gender: </h6>
-                                                            <h6>Email: </h6>
-                                                            <h6>Phone Number: </h6>
-                                                            <h6>Address: </h6>
+                                                           <?php include_once 'back/profile.php';?>
                                                         </div>
                                                     </div>
                                                     <div class="column">
                                                         <figure class="image profile-img is-128x128">
-                                                            <img class="is-rounded" src="../../images/user.jpg">
+                                                            <?php echo $pro;?>
                                                         </figure>
                                                     </div>
                                                 </div>
