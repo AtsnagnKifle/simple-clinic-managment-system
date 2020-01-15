@@ -24,10 +24,9 @@ else{
                     '<td>'.$row['room_no'].'</td>'.
                     '<td>'.$row['is_emergency'].'</td>'.
                     '<td>
-                        <form action="back/make_treated.php" method="POST">
-                            <input class="is-sr-only" name="app_id" value="'.$row['patient_id'].'">
-                            <button type="submit" name="submit" class="button is-success is-small">Approved</button>
-                        </form>    
+                        <span class="tag">
+                            Approved
+                        </span>
                     </td>
                 </tr>';
             /*echo '<tr>'.

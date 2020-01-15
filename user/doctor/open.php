@@ -207,6 +207,7 @@
 
                                                             <div class="column" style="padding:5%;">
                                                                 <div class="container has-text-centered content">
+                                                                    <form action="back/request_special_food.php" method="POST">
                                                                     <div class="title">
                                                                         Special Food Request
                                                                     </div>
@@ -235,8 +236,9 @@
                                                                         <br>
                                                                         <div class="button is-success is-large"
                                                                             style="margin: auto;"
-                                                                            onclick="document.getElementById('special_food_modal').setAttribute('class','modal')">
-                                                                            Submit
+                                                                            onclick="document.getElementById('special_food_modal').setAttribute('class','modal')"
+                                                                            >
+                                                                            <input type="submit" value="Submit" class="button is-success is-large">
                                                                         </div>
                                                                         <br>
                                                                         <div class="button is-danger"
@@ -245,6 +247,7 @@
                                                                             Cancel
                                                                         </div>
                                                                     </div>
+                                                                    </form>
                                                                 </div>
                                                             </div>
 

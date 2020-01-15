@@ -24,7 +24,15 @@ else{
                     '<td>'.$row['reason'].'</td>'.
                     '<td>'.$row['is_emergency'].'</td>'.
                     '<td>
-                        <button data-toggle="modal" data-target="#approveform" onclick="setId('."'".$row['patient_id']."'".')" class="button is-success is-small">Approve</button><button class="button is-danger is-small">Decline</button>
+                        <form method="POST" id="approve_form_1">
+                            <input type="hidden" name="status" value="approve">
+                            <input type="hidden" name="request_id" class="hidden" value="'.$row['request_id'].'">
+                            <button data-toggle="modal" data-target="#approveform" onclick=document.forms["approve_form_1"].submit(); class="button is-success is-small">Approve</button>
+                        </form>
+                        <form method="POST" id="decline_form_1"><button class="button is-danger is-small" onclick=document.forms["decline_form_1"].submit();>Decline</button>
+                            <input type="hidden" name="status" value="decline">
+                            <input type="hidden" name="request_id" class="hidden" value="'.$row['request_id'].'">
+                        </form>
                     </td>
                 </tr>';
             /*echo '<tr>'.

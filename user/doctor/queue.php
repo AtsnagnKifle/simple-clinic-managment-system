@@ -22,14 +22,14 @@
                 <br>
                 <nav class="panel is-shadowless">
                     <p class="panel-tabs content">
-                        <a class="is-active has-text-weight-bold is-6 has-text-color-black" id="his-activator">View Queue</a>
+                        <a class="is-active has-text-weight-bold is-6 has-text-color-black" id="his-activator">Queue </a>
                     </p>
                     
                     <div class="panel-block">
                             <div id="his" class="column is-5 has-text-centered" style="margin: auto;">
-                                <div class="title ">Queue</div>
+                                <div class="title ">Patient Queue</div>
                                 <div class="table-container">
-                                    <table class="table is-success" >
+                                    <table class="table is-success" style="margin:auto;">
                                         <thead>
                                             <tr>
                                                 
@@ -40,7 +40,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php include_once 'back/queue_list.php';?>
+                                            <?php include_once 'back/treated_list.php';?>
                                         </tbody>
                                     </table>
                                 </div>

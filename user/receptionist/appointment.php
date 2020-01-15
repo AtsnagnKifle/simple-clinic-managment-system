@@ -1,5 +1,8 @@
 <?php
     session_start();
+    include_once("back/approve_appointment.php");
+
+
 ?>
 
 <!DOCTYPE html>
@@ -52,8 +55,8 @@
                                     </table>
                                 </div>
                                 <div class="title ">Pending</div>
-                                <div class="table-container">
-                                    <table class="table is-success" >
+                                <div class="table-container" >
+                                    <table class="table is-success" style="margin:auto">
                                         <thead>
                                             <tr>
                                                 <th>Date</th>

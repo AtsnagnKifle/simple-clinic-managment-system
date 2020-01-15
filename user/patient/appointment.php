@@ -61,7 +61,7 @@
                                                             '<td>'.$data['reason'].'</td>'.
                                                             '<td>'.$data['room_no'].'</td>'.
                                                             '<td>'.$data['is_emergency'].'</td>'.
-                                                            '<td>'.'<button class="button is-success is-small">Approved</button>'.'</td>'.
+                                                            '<td>'.'<button class="button is-success is-small is-static">Approved</button>'.'</td>'.
                                                             '<td>
                                                             <div class="level-right">
                                                                 <button class="button is-success is-small is-danger" onclick='."'".'document.getElementById("nurse_modal").setAttribute("class","modal is-active")'."'".'>Delete</button>
@@ -107,7 +107,7 @@
                                             else if($_SESSION['request']=="Pending")
                                             {
                                                 echo '<div class="table-container">
-                                                        <table class="table is-success" >
+                                                        <table class="table is-success" style="margin:auto">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Date</th>
@@ -128,7 +128,7 @@
                                                             '<td>'.$data['reason'].'</td>'.
                                                             
                                                             '<td>'.$data['is_emergency'].'</td>'.
-                                                            '<td><button class="button is-success is-small">Pending</button></td>'.
+                                                            '<td><button class="button is-success is-small is-static">Pending</button></td>'.
                                                             '<td>
                                                                 <form action="back/appointment_delete.php" method="POST">
                                                                     <button type="submit" name="submit" class="button is-danger is-small">delete</button>

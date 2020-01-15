@@ -1,4 +1,4 @@
-        <div class="column is-2 has-background-black-ter is-centered">
+        <div class="column is-2 has-background-blacer is-centered">
             <div style="padding:10%">
                 <aside class="menu">
                     <p class="menu-label">
@@ -15,7 +15,6 @@
                     <ul class="menu-list">
                         <li><a href="queue.php">View Patient Queue</a></li>
                         <li><a href="appointment.php">Appointment</a></li>
-                        <li><a href="treat.php">Treat Patient</a></li>
                     </ul>
                     <p class="menu-label">
                         System

@@ -1,4 +1,4 @@
-        <div class="column is-2 has-background-black-ter is-centered">
+        <div class="column is-2 is-centered">
             <div style="padding:10%">
                 <aside class="menu">
                     <p class="menu-label">
