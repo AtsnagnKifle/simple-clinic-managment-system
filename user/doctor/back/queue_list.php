@@ -21,9 +21,9 @@ else{
                     '<td>'.$row['doctor_id'].'</td>'.
                     '<td>'.$row['room_no'].'</td>'.
                     '<td>
-                        <form action="back/make_treated.php" method="POST">
+                        <form action="open.php" method="GET">
                             <input class="is-sr-only" typr="text" name="id" value="'.$row['patient_id'].'">
-                            <button type="submit" name="submit" class="button is-success is-small">Treat</button>
+                            <button type="submit" name="submit" class="button is-success is-small">Open</button>
                         </form>
                     
                     </td>'.
@@ -34,7 +34,7 @@ else{
 
            }
     else{
-        echo '<center><p>Not Found</p><center>';
+        // echo '<center><p>Not Found</p><center>';
     }  
    
 }

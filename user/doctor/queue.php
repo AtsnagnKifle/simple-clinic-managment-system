@@ -40,7 +40,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php include_once 'back/treated_list.php';?>
+                                            <?php include_once 'back/queue_list.php';?>
                                         </tbody>
                                     </table>
                                 </div>

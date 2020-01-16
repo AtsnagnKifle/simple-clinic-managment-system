@@ -48,23 +48,7 @@
                                                 </thead>
                                                 <tbody>
                                                    
-                                                   
-                                                    <tr>
-                                                        <th>12/22/2019</th>
-                                                        <td><a href="#"><b>Doctor1</b></a></td>
-                                                        <td>
-                                                            symptom a
-                                                            symptom b
-                                                            symptom c
-                                                        </td>
-                                                        <td>
-                                                            test1 => result1
-                                                        </td>
-                                                        <td>Diagnosis1</td>
-                                                        <td><a href="#">Medicine1, Medicine2</a></td>
-                                                        <td>Multi line note by doc</td>
-                                                        <td>Receptonist</td>
-                                                    </tr>
+                                                
                                                     <?php include_once 'back/medical_history.php';?>
                                                     
                                                 </tbody>

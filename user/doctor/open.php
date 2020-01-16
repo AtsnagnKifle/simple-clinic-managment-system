@@ -1,5 +1,37 @@
 <?php
     session_start();
+    
+    if(!isset($_GET["id"]))
+    {
+        die("FALSE");
+    }
+    include_once("../../back/db.php");
+    $query = "SELECT * FROM `user` WHERE id = '".$_GET["id"]."'";
+    $result = mysqli_query($con,$query);
+    $check = mysqli_num_rows($result);
+    if($check==1)
+    {
+        while( $row = mysqli_fetch_assoc($result))
+        {
+            $name = $row["full_name"];
+            $id = $row["id"];
+            $age = $row["age"];
+            $gender = $row["gender"];
+            $email = $row["email"];
+            $phone = $row["phone_number"];
+            $address = $row["address"];
+        }
+    }
+    else
+    {
+        var_dump($query);
+        echo "<br>";
+        var_dump($result);
+        echo "<br>";
+        var_dump($check);
+        echo "";
+        die();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +40,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Treate</title>
+    <title>Treat</title>
     <link rel="stylesheet" href="../../statics/css/bulma.css">
 </head>
 
@@ -23,13 +55,13 @@
                     <div class="columns">
                         <div class="column">
                             <div class="content has-text-left" style="padding-left: 30%;">
-                                <h6>Name: </h6>
-                                <h6>ID: </h6>
-                                <h6>Age: </h6>
-                                <h6>Gender: </h6>
-                                <h6>Email: </h6>
-                                <h6>Phone Number: </h6>
-                                <h6>Address: </h6>
+                                <h6>Name: <?php echo $name ?> </h6>
+                                <h6>ID: <?php echo $id ?></h6>
+                                <h6>Age: <?php echo $age ?></h6>
+                                <h6>Gender: <?php echo $gender ?></h6>
+                                <h6>Email: <?php echo $email ?></h6>
+                                <h6>Phone Number: <?php echo $phone ?></h6>
+                                <h6>Address: <?php echo $address ?></h6>
                             </div>
                         </div>
                         <div class="column">
@@ -66,23 +98,9 @@
                                         </thead>
                                         <tbody>
                                             
+                                            <?php include_once('back/list_medical_history.php'); ?>
                                             
-                                            
-                                            <tr>
-                                                <th>12/22/2019</th>
-                                                <td><a href="#"><b>Doctor1</b></a></td>
-                                                <td>
-                                                    symptom a
-                                                    symptom b
-                                                    symptom c
-                                                </td>
-                                                <td>
-                                                    test1 => result1
-                                                </td>
-                                                <td>Diagnosis1</td>
-                                                <td><a href="#">Medicine1, Medicine2</a></td>
-                                                <td>Multi line note by doc</td>
-                                            </tr>
+                                           
                                             
                                         </tbody>
                                     </table>
@@ -94,9 +112,7 @@
                                     <div class="column">
                                         <div class="has-text-centered control" id="lab_results">
                                             <ol>
-                                                <li><a href="#">Results 1</a></li>
-                                                <li><a href="#">Results 2</a></li>
-                                                <li><a href="#">Results 3</a></li>
+                                                <?php include_once('back/list_lab_results.php'); ?>
                                             </ol>
                                         </div>
                                     </div>
@@ -112,10 +128,7 @@
                                         <div class="control is-expanded" style="margin: auto;">
                                             <div class="label has-text-weight-light">Select Medicine </div>
                                             <select name="selector" class="input is-expanded">
-                                                <option value="Medicine 1">Medicine 1</option>
-                                                <option value="Medicine 1">Medicine 2</option>
-                                                <option value="Medicine 1">Medicine 3</option>
-                                                <option value="Medicine 1">Medicine 4</option>
+                                                <?php include_once("back/get_medicines.php"); ?>
                                             </select>
                                         </div>
                                     </div>
@@ -208,6 +221,9 @@
                                                             <div class="column" style="padding:5%;">
                                                                 <div class="container has-text-centered content">
                                                                     <form action="back/request_special_food.php" method="POST">
+                                                                    <input type="hidden" class="hidden" name="doc_id" value=<?php echo $_SESSION["id"] ?>>
+                                                                    <input type="hidden" class="hidden" name="pat_id" value=<?php echo $id; ?>>
+                                                                    
                                                                     <div class="title">
                                                                         Special Food Request
                                                                     </div>
@@ -283,7 +299,9 @@
                                                                 <div class="container has-text-centered content">
                                                                     <div class="title">Referral</div>
                                                                     <div class="field">
-
+                                                                    <form action="back/request_referal.php" method="POST">
+                                                                    <input type="hidden" class="hidden" name="doc_id" value=<?php echo $_SESSION["id"] ?>>
+                                                                    <input type="hidden" class="hidden" name="pat_id" value=<?php echo $id; ?>>
                                                                         <div class="control">
                                                                             <label class="label">Reason: </label>
                                                                             <textarea name="referral_reason" id="rr"
@@ -308,7 +326,7 @@
                                                                         <div class="button is-success is-large"
                                                                             style="margin: auto;"
                                                                             onclick="document.getElementById('referral_modal').setAttribute('class','modal')">
-                                                                            Submit
+                                                                            <input type="submit" value="Submit" class="button is-success is-large">
                                                                         </div>
                                                                         <br>
                                                                         <div class="button is-danger"
@@ -317,6 +335,7 @@
                                                                             Cancel
                                                                         </div>
                                                                     </div>
+                                                                    </form>
                                                                 </div>
                                                             </div>
 
@@ -346,6 +365,8 @@
                                                         <div class="column">
                                                             <br><br>
                                                         </div>
+                                <form action="back/request_nurse.php" method="POST">
+                                    <input type="hidden" class="hidden" name="doc_id" value=<?php echo $_SESSION["id"] ?>>  
                                                         <div class="hero is-white">
                                                             <div class="column" style="padding:5%;">
                                                                 <div class="container has-text-centered content">
@@ -354,12 +375,15 @@
                                                                     <div class="title has-text-weight-bold">
                                                                         Are you sure you want to continue?
                                                                     </div>
-                                                                    <button class="button is-success is-large" onclick="document.getElementById('nurse_modal').setAttribute('class','modal')">Yes</button>
+                                                                    
+                                                                    <aa class="" onclick="document.getElementById('nurse_modal').setAttribute('class','modal')">
+                                                                    <input type="submit" value="Yes" class="button is-success is-large"></aa>
                                                                     <br>
                                                                     <button class="button is-danger has-text-weight-bold" onclick="document.getElementById('nurse_modal').setAttribute('class','modal')">No</button>
                                                                 </div>
                                                             </div>
 
+                                    </form>
                                                         </div>
                                                         <div class="column"><br><br></div>
                                                     </div>
