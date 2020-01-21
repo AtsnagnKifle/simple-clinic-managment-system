@@ -6,7 +6,7 @@
 
         $id = $_GET["id"];
         
-        $query = "SELECT `id`, `patient_id`, `doctor_id`, `symptoms`, `labratory_id`, `diagnosis`, `prescription_id`, `receptionist_id`, `additional_note`, `date` FROM `medical_history` WHERE patient_id = '".$id."'";
+        $query = "SELECT `id`, `patient_id`, `doctor_id`, `symptoms`, `laboratory_id`, `diagnosis`, `prescription_id`, `receptionist_id`, `additional_note`, `date` FROM `medical_history` WHERE patient_id = '".$id."'";
         $result = mysqli_query($con,$query);
         $check = mysqli_num_rows($result);
 

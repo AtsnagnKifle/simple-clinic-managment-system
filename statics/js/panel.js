@@ -1,55 +1,76 @@
-// his,lab,med,ref
+// his,lab,med,ref,treat
 var H = document.getElementById('his');
 var L = document.getElementById('lab');
 var M = document.getElementById('med');
 var R = document.getElementById('ref');
+var T = document.getElementById('treat');
 
 var Hactivator = document.getElementById('his-activator');
 var Lactivator = document.getElementById('lab-activator');
 var Mactivator = document.getElementById('med-activator');
 var Ractivator = document.getElementById('ref-activator');
+var Tactivator = document.getElementById('treat-activator');
 
 Hactivator.onclick = function () {
     H.setAttribute('style', 'margin:auto;');
     L.setAttribute('style', 'display:none;');
     M.setAttribute('style', 'display:none;');
     R.setAttribute('style', 'display:none;');
+    T.setAttribute('style', 'display:none;');
     Hactivator.classList.add("is-active");
     Lactivator.classList.remove("is-active")
     Mactivator.classList.remove("is-active")
     Ractivator.classList.remove("is-active")
+    Tactivator.classList.remove("is-active")
 };
 Lactivator.onclick = function () {
     L.setAttribute('style', 'margin:auto;');
     H.setAttribute('style', 'display:none;');
     M.setAttribute('style', 'display:none;');
     R.setAttribute('style', 'display:none;');
+    T.setAttribute('style', 'display:none;');
     Lactivator.classList.add("is-active");
     Mactivator.classList.remove("is-active")
     Ractivator.classList.remove("is-active")
     Hactivator.classList.remove("is-active")
+    Tactivator.classList.remove("is-active")
 };
 Mactivator.onclick = function () {
     M.setAttribute('style', 'margin:auto;');
     L.setAttribute('style', 'display:none;');
     H.setAttribute('style', 'display:none;');
     R.setAttribute('style', 'display:none;');
+    T.setAttribute('style', 'display:none;');
     Mactivator.classList.add("is-active");
     Lactivator.classList.remove("is-active")
     Hactivator.classList.remove("is-active")
     Ractivator.classList.remove("is-active")
+    Tactivator.classList.remove("is-active")
 };
 Ractivator.onclick = function () {
     R.setAttribute('style', 'margin:auto;');
     L.setAttribute('style', 'display:none;');
     M.setAttribute('style', 'display:none;');
     H.setAttribute('style', 'display:none;');
+    T.setAttribute('style', 'display:none;');
     Ractivator.classList.add("is-active");
     Lactivator.classList.remove("is-active")
     Mactivator.classList.remove("is-active")
     Hactivator.classList.remove("is-active")
+    Tactivator.classList.remove("is-active")
 };
-
+Tactivator.onclick = function () {
+    T.setAttribute('style', 'margin:auto;');
+    R.setAttribute('style', 'display:none;');
+    L.setAttribute('style', 'display:none;');
+    M.setAttribute('style', 'display:none;');
+    H.setAttribute('style', 'display:none;');
+    Tactivator.classList.add("is-active");
+    Ractivator.classList.remove("is-active");
+    Lactivator.classList.remove("is-active")
+    Mactivator.classList.remove("is-active")
+    Hactivator.classList.remove("is-active")
+};
 var lists = ['abcd', 'efgh', 'ijkl', 'mnop'];
 
 var select_lab_requests = document.getElementById('selector');

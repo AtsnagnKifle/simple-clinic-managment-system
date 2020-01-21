@@ -3,7 +3,8 @@
 
     if(isset($_SESSION['id']) && $_SESSION['role']=="pharmacist"){
 
-        echo "pharmacist";
-    
+        header("Location: doctor_request.php");
+        exit();
     }
+
 ?>

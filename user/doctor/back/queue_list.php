@@ -8,7 +8,7 @@ if(!isset($_SESSION['id']) || $_SESSION['role']!="doctor")
 else{
     include_once '../../back/db.php';
     //$qu="SELECT * FROM queue where doctor_id ='".$_SESSION['id']."' AND is_treated = 'NULL'";
-    $qu="SELECT * FROM queue where doctor_id ='".$_SESSION['id']."' AND is_treated IS NULL";
+    $qu="SELECT * FROM queue where doctor_id ='".$_SESSION['id']."'";
 
 
     $result = mysqli_query($con,$qu);

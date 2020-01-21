@@ -1,42 +1,75 @@
 <?php
-
-if(!isset($_SESSION['id']) || $_SESSION['role']!="laboratorist")
-{
-    header("Location: ../../index.php");
-    exit();
-}
-else{
-    include_once '../../back/db.php';
-    //$qu="SELECT * FROM queue where doctor_id ='".$_SESSION['id']."' AND is_treated = 'NULL'";
-    $qu="SELECT * FROM user where id ='".$_SESSION['id']."'";
-
-
-    $result = mysqli_query($con,$qu);
-    $check = mysqli_num_rows($result);
-    if ($check >= 1){
-        $row = mysqli_fetch_assoc($result);
-        echo  '<h6>Name:'.$row['full_name'].'</h6>'.
-              '<h6>ID:'.$row['id'].'</h6>'.
-              '<h6>Age:'.$row['age'].'</h6>'.
-              '<h6>Gender:'.$row['gender'].'</h6>'.
-              '<h6>Email:'.$row['email'].'</h6>'.
-              '<h6>Phone Number:'.$row['phone_number'].'</h6>'.
-              '<h6>Address:'.$row['address'].'</h6>';
-        
-        if($row['gender']=="F"){
-            $pro = '<img class="is-rounded" src="../../images/labM.jpg">';
-
-        }
-        else{
-            $pro = '<img class="is-rounded" src="../../images/labM.png">';
-
-        }
-           
-               
-    }
-
-}
-
-
-
+    session_start();
 ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="../../statics/css/bulma.css">
+</head>
+
+<body class="has-text-weight-light">
+
+    <div class="columns">
+        <?php include_once 'nav.php';?>
+        <div class="column">
+        <div class="columns"><br>
+            <div class="column">
+                <br>
+                <nav class="panel is-shadowless">
+                    
+                    
+                    <div class="panel-block">
+                            <div id="his" class="column is-10 has-text-centered" style="margin: auto;">
+                               
+                                <section class="hero">
+
+                                    <div class="hero-body">
+
+                                        <div class="columns">
+                                            <div class="column is-centered has-text-centered">
+                                                <br>
+                                                <div class="columns">
+                                                    <div class="column">
+                                                        <div class="content has-text-left" style="padding-left: 30%;">
+                                                           
+                                                            <?php include_once 'back/profile.php';?>
+                                                            <!--h6>ID: doc001</h6>
+                                                            <h6>Age: 21</h6>
+                                                            <h6>Gender: M</h6>
+                                                            <h6>Email: kifleatsnagn@gmail.com</h6>
+                                                            <h6>Phone Number: +251985233113</h6>
+                                                            <h6>Address: posta</h6-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <figure class="image profile-img is-128x128">
+                                                            <?php echo $pro;?>
+                                                        </figure>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </section>
+                             </div>                   
+                    </div>
+                </nav>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <script src="../../statics/js/panel.js"></script>
+
+</body>
+
+
+</html>
+
+
+

@@ -6,6 +6,13 @@
         die("FALSE");
     }
     include_once("../../back/db.php");
+
+    //for treat
+    $query1 = "SELECT * FROM `queue` WHERE patient_id = '".$_GET["id"]."'";
+    $result1 = mysqli_query($con,$query1);
+    $row1 = mysqli_fetch_assoc($result1);
+
+
     $query = "SELECT * FROM `user` WHERE id = '".$_GET["id"]."'";
     $result = mysqli_query($con,$query);
     $check = mysqli_num_rows($result);
@@ -66,10 +73,14 @@
                         </div>
                         <div class="column">
                             <figure class="image profile-img is-128x128">
-                                <img class="is-rounded" src="images/128x128.png">
+                                <img class="is-rounded" src="../../images/patM.jpg">
                             </figure>
                         </div>
                     </div>
+                    <form action="back/save_finish.php" method="POST">
+                        <input type="hidden" value="<?php echo $id?>" name="patientId">
+                        <button type="submit" name="submit" class="button is-success">SAVE AND FINISH</button>
+                    </form>
                 </div>
             </div>
             <div class="columns"><br>
@@ -80,6 +91,7 @@
                             <a id="lab-activator">Laboratory Results</a>
                             <a id="med-activator">Prescribe Medicine</a>
                             <a id="ref-activator">Requests</a>
+                            <a id="treat-activator">Treat</a>
                         </p>
                         <div class="panel-block">
                             <div id="his" class="column is-10 section" style="margin: auto;">
@@ -119,31 +131,114 @@
                                 </div>
 
                             </div>
+                            <div class="panel-block is-10 column" id="treat" style="display: none;">
+                                <div class="columns">
+
+                                    <div class="column">
+                                        <div class="has-text-centered" >
+                                            
+                                        <form action="back/set_symptoms.php" method="POST">    
+                                               
+                                            <?php
+                                                
+                                                if($row1['symptoms']==""){
+                                                    echo '<div class="control">
+                                                        <label class="label">Symptoms: </label>
+                                                        <textarea name="symptoms" cols="5" rows="3"
+                                                        class="input"></textarea>
+                                                    </div>';
+                                                }
+                                                else{
+                                                    echo '
+                                                        
+                                                        <label class="label">Symptoms: </label>
+                                                        <p>'.$row1['symptoms'].'</p>
+                                                        <input name="symptoms"
+                                                        type="hidden" value="'.$row1['symptoms'].'"></textarea>';    
+                                                }
+                                                if($row1['diagnosis']==""){
+                                                    echo '<div class="control">
+                                                        <label class="label">Diagnosis: </label>
+                                                        <textarea name="diagnosis" cols="5" rows="3"
+                                                        class="input"></textarea>
+                                                    </div>';
+                                                }
+                                                else{
+                                                    echo '
+                                                        
+                                                        <label class="label">diagnosis: </label>
+                                                        <p>'.$row1['symptoms'].'</p>
+                                                        <input name="diagnosis"
+                                                        type="hidden" value="'.$row1['diagnosis'].'"></input>';    
+                                                }
+                                                if($row1['additional_note']==""){
+                                                    
+                                                    echo '<div class="control">
+                                                        <label class="label">Additional Notes: </label>
+                                                        <textarea name="additionalNote" cols="5" rows="3"
+                                                        class="input"></textarea>
+                                                    </div>';
+                                                }
+                                                else{
+                                                    echo '
+                                                        
+                                                        <label class="label">Additional Note: </label>
+                                                        <p>'.$row1['additional_note'].'</p>
+                                                        <input name="additionalNote"
+                                                        type="hidden" value="'.$row1['additional_note'].'"></textarea>';    
+                                                }
+                                            ?>
+                                            <br>
+                                            <input type="hidden" name="patientId" value="<?php echo $id ?>" >
+                                            <button class="button is-primary" type="submit" name="submit">SET</button>
+                                        </form>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                             <div class="panel-block" id="med" style="display: none;">
 
                                 <div class="has-text-centered" id="med_selections">
                                     <br>
-                                    <div class="field has-addons ">
+                                    <form action="back/prescribe_medicine.php" method="POST">
+                                        <div class="field has-addons ">
 
-                                        <div class="control is-expanded" style="margin: auto;">
-                                            <div class="label has-text-weight-light">Select Medicine </div>
-                                            <select name="selector" class="input is-expanded">
-                                                <?php include_once("back/get_medicines.php"); ?>
-                                            </select>
+                                            <div class="control is-expanded" style="margin: auto;">
+                                                <div class="label has-text-weight-light">Select Medicine </div>
+                                                <select name="selector" class="input is-expanded">
+                                                    <?php include_once("back/get_medicines.php"); ?>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="field"><input type="button" class="button is-success" value="Prescribe">
-                                    </div>
+                                        <input type="hidden" name="patientId" value="<?php echo $id?>">
+                                        <div class="field"><input type="submit" name="submit" class="button is-success" value="Prescribe">
+                                        </div>
+                                    </form>
                                 </div>
 
                             </div>
                             <div class="panel-block column is-centered is-4" id="ref" style="display: none;">
 
                                 <div class="level">
-                                    <div class="level-left">Labratory Tests</div>
+                                    <div class="level-left">Laboratory Tests</div>
                                     <div class="level-right">
-                                        <button class="button is-success"
-                                            onclick="document.getElementById('lab_test_modal').setAttribute('class','modal is-active')">Request</button>
+                                            <?php
+                                                if($row1['laboratory_id']==""){
+                                                    echo '<button class="button is-success" onclick='."'".'document.getElementById("lab_test_modal").setAttribute("class","modal is-active")'."'".'>Request</button>';
+
+                                                }
+                                                else{
+                                                    echo '<button class="button">Requested</button>';
+ 
+                                                }
+                                            
+                                            ?>
+                                        <!--button class="button is-success"
+                                            onclick="document.getElementById('lab_test_modal').setAttribute('class','modal is-active')">Request
+                                            
+                                            </button-->
                                         <div class="modal" id='lab_test_modal'>
                                             <div class="modal-background">
                                                 <div class="columns">
@@ -152,45 +247,50 @@
                                                         <div class="column">
                                                             <br><br>
                                                         </div>
-                                                        <div class="hero is-white">
-
-                                                            <div class="column" style="padding:5%;">
-                                                                <div class="container has-text-centered content">
-                                                                    <div class="title has-text-weight-light">
-                                                                        Labratory Request
-                                                                    </div>
-                                                                    <div class="has-text-centered" id="lab_reports">
-                                                                        <p>
-                                                                            Add labratory tests to be conducted from the
-                                                                            list
-                                                                        </p>
-                                                                        <div id="selected"
-                                                                            class="is-narrow has-addons is-gapless">
+                                                        <form action="back/request_lab_test.php" method="POST">
+                                                            <div class="hero is-white">
+                                                            
+                                                                <div class="column" style="padding:5%;">
+                                                                    <div class="container has-text-centered content">
+                                                                        <div class="title has-text-weight-light">
+                                                                            Laboratory Request
                                                                         </div>
-                                                                        <br>
-                                                                        <div class="field has-addons ">
-
-                                                                            <div class="control is-expanded"
-                                                                                style="margin: auto;">
-                                                                                <select name="selector" id="selector"
-                                                                                    class="input is-expanded">
-                                                                                </select>
+                                                                        <div class="has-text-centered" id="lab_reports">
+                                                                            <p>
+                                                                                Add labrotory tests to be conducted from the
+                                                                                list
+                                                                            </p>
+                                                                            <div id="selected"
+                                                                                class="is-narrow has-addons is-gapless">
                                                                             </div>
-                                                                            <div class="control">
-                                                                                <a class="button is-info"
-                                                                                    onclick=selected(event)
-                                                                                    id="add_button">Add</a>
+                                                                            <br>
+                                                                            <div class="field has-addons ">
+
+                                                                                <div class="control is-expanded"
+                                                                                    style="margin: auto;">
+                                                                                    <select name="selector" id="selector"
+                                                                                        class="input is-expanded">
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="control">
+                                                                                    <a class="button is-info"
+                                                                                        onclick=selected(event)
+                                                                                        id="add_button">Add</a>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="field">
+                                                                                <input type="hidden" value="<?php echo $id?>" name="patientId">
+                                                                                <input type="submit" name="submit" class="button is-success" value="Submit">
+                                                                               
                                                                             </div>
                                                                         </div>
-                                                                        <div class="field"><input type="button"
-                                                                                class="button is-success"
-                                                                                value="Submit"></div>
-                                                                    </div>
 
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                        </div>
+                                                            </div>
+                                                        </form>
                                                         <div class="column"><br><br></div>
                                                     </div>
                                                     <div class="column"></div>
@@ -236,7 +336,7 @@
                                                                                 class="textarea"></textarea>
                                                                         </div>
                                                                         <br>
-                                                                        <div class="field">
+                                                                        <!--div class="field">
                                                                             <div class="control">
                                                                                 <label class="label">Condition:</label>
                                                                                 <select class="input"
@@ -248,7 +348,7 @@
                                                                                     <option>Condition 4</option>
                                                                                 </select>
                                                                             </div>
-                                                                        </div>
+                                                                        </div-->
                                                                         <br>
                                                                         <div class="button is-success is-large"
                                                                             style="margin: auto;"
@@ -305,7 +405,7 @@
                                                                         <div class="control">
                                                                             <label class="label">Reason: </label>
                                                                             <textarea name="referral_reason" id="rr"
-                                                                                cols="30" rows="5"
+                                                                                cols="15" rows="3"
                                                                                 class="textarea"></textarea>
                                                                         </div>
                                                                         <br>
@@ -315,18 +415,18 @@
                                                                                 <select class="input"
                                                                                     name="select_hospital"
                                                                                     id="hospital">
-                                                                                    <option>Test hospital 1</option>
-                                                                                    <option>Test hospital 2</option>
-                                                                                    <option>Test hospital 3</option>
-                                                                                    <option>Test hospital 4</option>
+                                                                                    <option>Adama General Hospital</option>
+                                                                                    <option>Betel Hospital</option>
+                                                                                    <option>Zewditu Hospital</option>
+                                                                                    <option>Tikur Anbesa Hospital</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
                                                                         <br>
-                                                                        <div class="button is-success is-large"
+                                                                        <div
                                                                             style="margin: auto;"
                                                                             onclick="document.getElementById('referral_modal').setAttribute('class','modal')">
-                                                                            <input type="submit" value="Submit" class="button is-success is-large">
+                                                                            <input type="submit" value="Submit" class="button is-success ">
                                                                         </div>
                                                                         <br>
                                                                         <div class="button is-danger"
@@ -356,7 +456,18 @@
                                 <div class="level">
                                     <div class="level-left">Request Nurse</div>
                                     <div class="level-right">
-                                        <button class="button is-success" onclick="document.getElementById('nurse_modal').setAttribute('class','modal is-active')">Request</button>
+                                            <?php
+                                                if($row1['nurse_id']==""){
+                                                    echo '<button class="button is-success" onclick='."'".'document.getElementById("nurse_modal").setAttribute("class","modal is-active")'."'".'>Request</button>';
+
+                                                }
+                                                else{
+                                                    echo '<button class="button">Requested</button>';
+ 
+                                                }
+                                            
+                                            ?>
+                                        <!--button class="button is-success" onclick="document.getElementById('nurse_modal').setAttribute('class','modal is-active')">Request</button-->
                                         <div class="modal" id='nurse_modal'>
                                             <div class="modal-background">
                                                 <div class="columns">
@@ -366,7 +477,8 @@
                                                             <br><br>
                                                         </div>
                                 <form action="back/request_nurse.php" method="POST">
-                                    <input type="hidden" class="hidden" name="doc_id" value=<?php echo $_SESSION["id"] ?>>  
+                                    <input type="hidden" value="<?php echo $id?>" name="patientId">
+                                    <input type="hidden" class="hidden" name="doc_id" value="<?php echo $_SESSION["id"] ?>">  
                                                         <div class="hero is-white">
                                                             <div class="column" style="padding:5%;">
                                                                 <div class="container has-text-centered content">
@@ -376,8 +488,9 @@
                                                                         Are you sure you want to continue?
                                                                     </div>
                                                                     
-                                                                    <aa class="" onclick="document.getElementById('nurse_modal').setAttribute('class','modal')">
-                                                                    <input type="submit" value="Yes" class="button is-success is-large"></aa>
+                                                                    <a class="" onclick="document.getElementById('nurse_modal').setAttribute('class','modal')">
+                                                                    <input type="submit" value="Yes" class="button is-success is-large"></a>
+                                                                    
                                                                     <br>
                                                                     <button class="button is-danger has-text-weight-bold" onclick="document.getElementById('nurse_modal').setAttribute('class','modal')">No</button>
                                                                 </div>
@@ -392,10 +505,12 @@
                                             </div>
                                     </div>
                                 </div>
-
-                                
+                                <div class="panel-block" id="treat" style="display: none;">                    
 
                             </div>
+
+
+                            
                         </div>
                     </nav>
                 </div>

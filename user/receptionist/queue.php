@@ -27,9 +27,9 @@
                         <a class="is-active has-text-weight-bold is-6 has-text-color-black" id="his-activator">View Queue</a>
                         <a class="has-text-weight-bold is-6 has-text-color-black" id="ref-activator" style="display: none;"></a>
                     </p>
-                    <div class="container" style="margin:auto">
-                        <button class="button">New Patient</button>
-                    </div>
+                    <button class="button is-primary" style="margin-left: 0px;"
+        onclick="document.getElementById('new_patient').setAttribute('class','modal is-active')">
+        New Patient</button>
                     <div class="panel-block">
                             <div id="his" class="column is-3 has-text-centered" style="margin: auto;">
                                 <div class="title ">Queue</div>
@@ -58,6 +58,63 @@
         </div>
     </div>
     </div>
+
+    <div class="panel-block has-text-centered">
+
+        <div id="his" class="column is-10 has-text-centered" style="margin: auto;">
+            
+            <div class="modal" id='new_patient'>
+                <div class="modal-background">
+                    <div class="columns">
+                        <div class="column"></div>
+                        <div class="column is-6 is-vcentered ">
+                            <div class="column">
+                                <br><br>
+                            </div>
+                            
+                                <div class="hero is-white">
+                                    <div class="column" style="padding:5%;">
+                                    <form action="back/new_patient.php" method="POST">
+                                        <div class="container has-text-centered content">
+                                            <div class="title has-text-weight-light">
+                                                New Patient
+                                            </div>
+                                            <br>
+                                            <p>
+                                                Patient id
+                                            </p>
+                                        
+                                            <input type="text" class="input" name="patientId">
+                                            <br><br>
+                                            <p>
+                                                Doctor id
+                                            </p>
+                                        
+                                            <input type="text" class="input" name="doctorId">
+                                            <br><br>
+                                            <p>
+                                                Enter Room Number
+                                            </p>
+                                            
+                                            <input type="text" class="input" name="room">
+                                            <div class="column">
+                                        <button type="submit" name="submit" class="button is-success is-large">SET</button>
+                                    </div>
+                                            
+                                        </div>
+                                        </form>
+
+                                    </div>
+                                </div>    
+                        </div>
+                        <div class="column"></div>
+                    </div>
+                </div>
+
+                <button class="modal-close is-large" aria-label="close"
+                    onclick="document.getElementById('new_patient').setAttribute('class','modal')"></button>
+    </div>
+    
     <script src="../../statics/js/panel.js"></script>
 
 </body>

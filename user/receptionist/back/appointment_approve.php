@@ -2,8 +2,6 @@
 
 if(!isset($_SESSION['id']) || $_SESSION['role']!="receptionist")
 {
-    echo "dsd";
-    exit();
     header("Location: ../../../index.php");
     exit();
 }

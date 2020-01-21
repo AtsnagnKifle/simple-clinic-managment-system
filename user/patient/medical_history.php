@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Appointments</title>
+    <title>Medical History</title>
     <link rel="stylesheet" href="../../statics/css/bulma.css">
 </head>
 
@@ -43,7 +43,6 @@
                                                         <th>Diagnosis</th>
                                                         <th>Prescriptions</th>
                                                         <th>Doctor's Notes</th>
-                                                        <th>Receptionist</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

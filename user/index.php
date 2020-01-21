@@ -18,6 +18,22 @@
             header("Location: doctor/index.php");
             exit();
         }
+        else if($_SESSION['role']=="nurse"){
+            header("Location: ../user/nurse/index.php");
+            exit();
+        }
+        else if($_SESSION['role']=="laboratorist"){
+            header("Location: ../user/laboratorist/index.php");
+            exit();
+        }
+        else if($_SESSION['role']=="pharmacist"){
+            header("Location: ../user/pharmacist/index.php");
+            exit();
+        }
+        else if($_SESSION['role']=="manager"){
+            header("Location: ../user/manager/index.php");
+            exit();
+        }
 
     }
 

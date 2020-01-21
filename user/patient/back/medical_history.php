@@ -14,28 +14,51 @@ else{
         while( $row = mysqli_fetch_assoc($result))
         {
 
-            $lab_id =$row['labratory_id']; 
-            $qu_lab_id="SELECT * FROM laboratory where laboratory_id = '".$lab_id."'";
-            $result_lab_id = mysqli_query($con,$qu_lab_id);
-            //$check_pre_id = mysqli_num_rows($result);
-            $data_lab_id = mysqli_fetch_assoc($result_lab_id);
+            // $lab_id =$row['labratory_id']; 
+            // $qu_lab_id="SELECT * FROM laboratory where laboratory_id = '".$lab_id."'";
+            // $result_lab_id = mysqli_query($con,$qu_lab_id);
+            // //$check_pre_id = mysqli_num_rows($result);
+            // $data_lab_id = mysqli_fetch_assoc($result_lab_id);
 
-            //$med_id = $data_pre_id['medicine_id'];
-            //$qu_med_id="SELECT * FROM medicine where medicine_id = '".$med_id."'";
-            //$result_med_id = mysqli_query($con,$qu_med_id);
-            //$check_pre_id = mysqli_num_rows($result);
-            //$data_med_id = mysqli_fetch_assoc($result_med_id);
+            // //$med_id = $data_pre_id['medicine_id'];
+            // //$qu_med_id="SELECT * FROM medicine where medicine_id = '".$med_id."'";
+            // //$result_med_id = mysqli_query($con,$qu_med_id);
+            // //$check_pre_id = mysqli_num_rows($result);
+            // //$data_med_id = mysqli_fetch_assoc($result_med_id);
             
-            echo'<tr>'.
-                    '<td>'.$row['date'].'</td>'.
-                    '<td>'.$row['doctor_id'].'</td>'.
-                    '<td>'.$row['symptoms'].'</td>'.
-                    '<td>'.$data_lab_id['requested_tests'].' => '.$data_lab_id['lab_results'].'</td>'.
-                    '<td>'.$row['diagnosis'].'</td>'.
-                    '<td>'.'pre'.'</td>'.
-                    '<td>'.$row['additional_note'].'</td>'.
-                    '<td>'.$row['receptionist_id'].'</td>'.
-                '</tr>';
+            // echo'<tr>'.
+            //         '<td>'.$row['date'].'</td>'.
+            //         '<td>'.$row['doctor_id'].'</td>'.
+            //         '<td>'.$row['symptoms'].'</td>'.
+            //         '<td>'.$data_lab_id['requested_tests'].' => '.$data_lab_id['lab_results'].'</td>'.
+            //         '<td>'.$row['diagnosis'].'</td>'.
+            //         '<td>'.'pre'.'</td>'.
+            //         '<td>'.$row['additional_note'].'</td>'.
+            //         '<td>'.$row['receptionist_id'].'</td>'.
+            //     '</tr>';
+
+            $d_query = "SELECT * FROM `user` WHERE `id`='".$row["doctor_id"]."'";
+            $res = mysqli_query($con,$d_query);
+            $doctor_name = mysqli_fetch_assoc($res)['full_name'];
+            $lab_result = '----------- -------- ------------ ----------- ----------- ------ ----- ----------- ------------- -----------';
+            $medicines = ["-"];
+            $medicines_list = "";
+            foreach ($medicines as $med) {
+                $medicines_list .= $med . "<br>";
+            }
+            echo '
+            <tr>
+                <th>'.$row['date'].'</th>
+                <td><a href="'.$row["doctor_id"].'"><b> Dr. '.$doctor_name.'</b></a></td>
+                <td>'.$row['symptoms'].'
+                </td>
+                <td>'.$lab_result.'
+                </td>
+                <td>'.$row["diagnosis"].'</td>
+                <td><a href=" ' .'">'. $medicines_list .'</a></td>
+                <td>'.$row["additional_note"] .'</td>
+            </tr>
+            ';
                
         }
 
