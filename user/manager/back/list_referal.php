@@ -21,7 +21,7 @@ else{
                 <td>'.$row["referal_reason"] .'</td>
                 <td>'.$row["referal_to"] .'</td>
                 <td>'.$row["date"] .'</td>
-                <td><button class="button is-info is-small">Print</buttom></td>
+                <!--td><button class="button is-info is-small">Print</buttom></td-->
             </tr>
             ';
                

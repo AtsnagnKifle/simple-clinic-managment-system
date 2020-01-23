@@ -35,7 +35,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <p class="control is-expanded has-icons-left">
-                                            <input class="input" name="username" type="text" placeholder="Username">
+                                            <input class="input" name="username" type="text" placeholder="Username" required>
                                         </p>
                                     </div>
                                 </div>
@@ -44,14 +44,14 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <p class="control is-expanded has-icons-left">
-                                            <input class="input" type="password" name="password" placeholder="Password">
+                                            <input class="input" type="password" name="password" placeholder="Password" required>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <br>
                             <div class="has-text-centered">
-                                <button class="button is-success" type="submit" name="submit">Login</button>
+                                <button class="button is-success" type="submit" name="submit" onclick=validateForm()>Login</button>
                             </div>
                         </div>
                     </div>
@@ -59,17 +59,70 @@
             </div>
         </div>
     </form>
+
+<div class="panel-block has-text-centered">
+
+<div id="his" class="column is-10 has-text-centered" style="margin: auto;">
+    
+    <div class="modal" id='error'>
+        <div class="modal-background">
+            <div class="columns">
+                <div class="column"></div>
+                <div class="column is-6 is-vcentered ">
+                    <div class="column">
+                        <br><br>
+                    </div>
+                    
+                        <div class="hero is-black">
+                            <div class="column" style="padding:5%;">
+                            
+                                <div class="container has-text-centered content">
+                                    <div class="title has-text-weight-light" style="color:red;">
+                                        Login Error
+                                    </div>
+                                    
+                                    <p style="color:red;">
+                                        incorrect user name or password
+                                    </p>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        <button class="modal-close is-large" aria-label="close"
+            onclick="document.getElementById('error').setAttribute('class','modal')"></button>
+                </div>
+                <div class="column"></div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+    <?php
+        if(isset($_SESSION['errorLogin'])){
+            if($_SESSION['errorLogin']=="Y"){
+                
+                echo '<script>document.getElementById("error").setAttribute("class","modal is-active");</script>';
+
+            }
+            $_SESSION['errorLogin']="";
+
+
+            }
+        ?>
+
+    
     <script>
+        
         function validateForm() {
             var user = document.forms["loginForm"]["username"].value;
             var pass = document.forms["loginForm"]["password"].value;
             if (user == "" || pass == "") {
-                alert("there is an empty form");
-                return false;
+                //document.getElementById("approve_appointment").setAttribute("class","modal is-active");
+                //document.getElementById("error").setAttribute("class","modal is-active");
+                //return false;
             }
-            else{
-                alert("FULL");
-            }
+            
         }
     </script>
 </body>

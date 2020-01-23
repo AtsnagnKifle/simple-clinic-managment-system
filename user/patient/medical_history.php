@@ -32,14 +32,14 @@
                                 
                                     <div class="column is-12 section" style="margin: auto;">
 
-                                            <button class="button is-left-aligned">Export as pdf</button>
+                                            <!--button class="button is-left-aligned">Export as pdf</button-->
                                             <table class="table is-fullwidth is-success">
                                                 <thead>
                                                     <tr>
                                                         <th>Date</th>
                                                         <th>Doctor</th>
                                                         <th>Symptoms</th>
-                                                        <th><abbr title="Lab Result">Lab</abbr></th>
+                                                        <th><abbr title="Lab Result">Lab Result</abbr></th>
                                                         <th>Diagnosis</th>
                                                         <th>Prescriptions</th>
                                                         <th>Doctor's Notes</th>

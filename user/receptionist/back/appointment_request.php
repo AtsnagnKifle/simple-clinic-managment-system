@@ -25,19 +25,24 @@ else{
                     '<td>'.$row['is_emergency'].'</td>'.
                     '<td>
                     <button class="button is-success is-small" style="margin-left: 0px;"
-                    onclick="document.getElementById('."'approve_appointment'".").setAttribute("."'class','modal is-active'".');">Approve</button>
-                        <!--form method="POST" id="approve_form_1" >
+                    onclick=setIdAndActiveModal("'.$row['patient_id'].'")>Approve</button>
+                    
+                    <button class="button is-danger is-small" style="margin-left: 0px;"
+                    onclick=delActiveModal("'.$row['patient_id'].'")>Decline</button>
+                    
+                        
+                    </td>
+                </tr>';
+            /*echo 
+            <!--form method="POST" id="approve_form_1" >
                             <input type="hidden" name="status" value="approve">
                             <input type="hidden" name="patient_id" class="hidden" value="'.$row['patient_id'].'">
                             <button data-toggle="modal" data-target="#approveform" onclick="document.forms["approve_form_1"].submit();" class="button is-success is-small">Approve</button>
                         </form-->
-                        <form method="POST" id="decline_form_1"><button class="button is-danger is-small" onclick=document.forms["decline_form_1"].submit();>Decline</button>
-                            <input type="hidden" name="status" value="decline">
-                            <input type="hidden" name="patient_id" class="hidden" value="'.$row['patient_id'].'">
-                        </form>
-                    </td>
-                </tr>';
-            /*echo '<tr>'.
+            
+            
+            
+            '<tr>'.
                     '<td>'.$row['username'].'</td>'.
                     '<td>'.$row['date'].'</td>'.
                     '<td><button class="btn btn-danger btn-sm">Pending</button></td>'.

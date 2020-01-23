@@ -71,7 +71,7 @@ Tactivator.onclick = function () {
     Mactivator.classList.remove("is-active")
     Hactivator.classList.remove("is-active")
 };
-var lists = ['abcd', 'efgh', 'ijkl', 'mnop'];
+var lists = ['blood', 'urine', 'stool', 'sputum'];
 
 var select_lab_requests = document.getElementById('selector');
 

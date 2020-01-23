@@ -21,6 +21,7 @@
             if($check<1)
             {    
                 header("Location: ../index.php?invalid");
+                $_SESSION['errorLogin']="Y";
                 exit();
             }
             else
@@ -64,8 +65,10 @@
                    
                 }
                 else{
-                    
+                    $_SESSION['errorLogin']="Y";
+
                     header("Location: ../index.php?password");
+                 
                     exit();
                 }
             

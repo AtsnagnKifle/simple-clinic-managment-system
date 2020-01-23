@@ -20,7 +20,7 @@ else{
                 <td>'.$row['doctor_id'].'</td>
                 <td>'.$row["reason"] .'</td>
                 <td>'.$row["date"] .'</td>
-                <td><button class="button is-info is-small">Print</buttom></td>
+                <!--td><button class="button is-info is-small">Print</buttom></td-->
             </tr>
             ';
                

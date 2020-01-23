@@ -29,7 +29,6 @@
             header("Location: ../open.php?id=".$_POST['patientId']."&submit=");
             exit();
         
-       
         
     }
         

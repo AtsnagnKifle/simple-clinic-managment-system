@@ -1,8 +1,5 @@
 <?php
     session_start();
-    include_once("back/approve_appointment.php");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +70,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php include_once 'back/appointment_approve.php';?>
+                                            <?php include_once 'back/list_appointment_approve.php';?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -107,37 +104,67 @@
                                 <div class="title has-text-weight-light">
                                     New Appointment
                                 </div>
-                                <p>
-                                    Select Doctor
-                                </p>
-                                <select class='input' name="doctors" id="docs">
+                                
 
-                                    <option value="doctor1" class="input">doctor1</option>
-                                    <option value="doctor2" class="input">doctor2</option>
-                                    <option value="doctor3" class="input">doctor3</option>
-                                    <option value="doctor4" class="input">doctor4</option>
-                                    <option value="doctor5" class="input">doctor5</option>
-                                </select>
-                                <p>
-                                    Enter Date
-                                </p>
-                                <input type="text" class="input">
-                                <br>
-                                <p>
-                                    Enter Room Number
-                                </p>
-                                <input type="text" class="input">
-                                <p>
-                                    Enter Reason
-                                </p>
-                                <input type="text" class="input">
+                                <form action="back/new_appointment.php" method="POST">
+                                
+                                    
+                                    <div class="control">
+                                        <p>
+                                            Select Doctor
+                                        </p>
+                                        <select class='input' name="doctorId" id="docs">
+
+                                            <?php
+                                                $qu="SELECT * FROM user where role = 'doctor'";
+                                                $result = mysqli_query($con,$qu);
+                                                $check = mysqli_num_rows($result);
+                                                if ($check >= 1){
+                                                    while( $row = mysqli_fetch_assoc($result))
+                                                    {
+                                                        echo '<option value="'.$row['id'].'" class="input">Dr '.$row['full_name'].'</option>';
+                                                    }
+                                                }
+                                            ?>
+                                        </select>
+                                        
+                                    </div>
+                                    <br>
+                                    <div class="field is-grouped is-grouped-multiline">
+                                    <div class="control">
+                                        <p>
+                                            Patient id
+                                        </p>
+                                        <input type="text" class="input" name="patientId">
+                                    </div>
+                                    <br>
+                                    
+                                    <div class="control">
+                                        <p>
+                                            is emergency
+                                        </p>
+                                        <select name="isEmergency" id="isEmergency"  class="input">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        
+                                    </div>        
+                                </div>
+                                    <div class="control">
+                                            <p>
+                                                Enter Reason
+                                            </p>
+                                            <input type="text" class="input" name="reason">
+                                    </div> 
+                                    <div class="column">
+                                        <button name="submit" type="submit" class="button is-success is-large">Add</button>
+                                    </div> 
+                                </form>  
                             </div>
 
                         </div>
 
-                        <div class="column">
-                            <button class="button is-success is-large">Add</button>
-                        </div>
+                        
 
                     </div>
                 </div>
@@ -166,7 +193,7 @@
                     
                         <div class="hero is-white">
                             <div class="column" style="padding:5%;">
-                            <form action="back/approve.php" method="GET">
+                            <form action="back/approve.php" method="POST">
                                 <div class="container has-text-centered content">
                                     <div class="title has-text-weight-light">
                                         Approve Appointment
@@ -181,7 +208,7 @@
                                     <p>
                                         Enter Room Number
                                     </p>
-                                    <input type="text" class="sr-only" name="username" value="pa001">
+                                    <input type="hidden" id="patientId" name="patientId" value="">
                                     <input type="text" class="input" name="room">
                                     <div class="column">
                                 <button type="submit" name="submit" class="button is-success is-large">Approve</button>
@@ -215,26 +242,27 @@
                 <div class="column is-6 is-vcentered ">
                     <div class="column">
                         <br><br>
-                    </div>
-                <div class="hero is-white">
-                                                                <div class="column" style="padding:5%;">
-                                                                    <div class="container has-text-centered content">
+                                        </div>
+                                            <div class="hero is-white">
+                                                <div class="column" style="padding:5%;">
+                                                        <div class="container has-text-centered content">
                                                                         <!--div class="title">delete</div-->
 
-                                                                        <div class="title has-text-weight-bold">
+                                                                <div class="title has-text-weight-bold">
                                                                             Are you sure you want to Delete?
-                                                                        </div>
-                                                                        <form action="back/appointment_delete.php" method="POST">
-                                                                            <button type="submit" name="submit" class="button is-success is-large" onclick="document.getElementById('delete_modal').setAttribute('class','modal')">Yes</button>
-                                                                        </form>
-                                                                        <br>
-                                                                        <button class="button is-danger has-text-weight-bold" onclick="document.getElementById('delete_modal').setAttribute('class','modal')">No</button>
-                                                                    </div>
                                                                 </div>
-
-                                                            </div>
-                                                            <div class="column"><br><br></div>
+                                                                <form action="back/appointment_delete.php" method="POST">
+                                                                    <input type="hidden" name="delpatientId" id="delpatientId" value="">
+                                                                    <button type="submit" name="submit" class="button is-success is-large" onclick="document.getElementById('delete_modal').setAttribute('class','modal')">Yes</button>
+                                                                </form>
+                                                                <br>
+                                                                <button class="button is-danger has-text-weight-bold" onclick="document.getElementById('delete_modal').setAttribute('class','modal')">No</button>
                                                         </div>
+                                                </div>
+
+                                            </div>
+                                                            <div class="column"><br><br></div>
+                                        </div>
                                                         <div class="column"></div>
                                                     </div>
                                                 </div>
@@ -242,7 +270,18 @@
                                             
 
     <script src="../../statics/js/panel.js"></script>
-
+    <script>
+        function setIdAndActiveModal(id){
+            //console.log(id);
+            var x = document.getElementById("patientId").setAttribute("value",id);
+            document.getElementById("approve_appointment").setAttribute("class","modal is-active");
+        }
+        function delActiveModal(id){
+            //console.log(id);
+            var x = document.getElementById("delpatientId").setAttribute("value",id);
+            document.getElementById("delete_modal").setAttribute("class","modal is-active");
+        }
+    </script>
 </body>
 
 

@@ -13,8 +13,8 @@
         if(isset($_POST['submit'])){
             //check medicine amount
 
-            $qu_check = "SELECT size FROM medicine'".$_POST['selector']."'"; 
-            $resul_check=mysqli_query($con,$qu_check);
+            $qu_check = "SELECT size FROM medicine WHERE medicine_id='".$_POST['selector']."'"; 
+            $result_check=mysqli_query($con,$qu_check);
             $data_check = mysqli_fetch_assoc($result_check);
             if($data_check['size']>0){
 
